@@ -1,6 +1,8 @@
 <template>
   <div>
-      <h1 class="text-white text-8xl text-center pt-16">Tim Jones</h1>
+      <h1 class="text-white text-8xl text-center pt-16">
+          <router-link :to="{ name: 'home' }">Tim Jones</router-link>
+      </h1>
       <ul class="m-auto justify-around mt-6 text-3xl">
           <li><router-link to="/projects">Projects</router-link></li>
           <li><router-link to="/resume">Resume</router-link></li>
