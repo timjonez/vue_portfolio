@@ -1,9 +1,23 @@
 <template>
-  <div class="flex-grow">
-    <div class="bg-white" v-for="project in projects" :key="project.slug">
-      <router-link :to="{ name: 'project-detail', params: { slug: project.slug }}">
-        <h1>{{ project.title }}</h1>
-      </router-link>
+  <div class="flex-grow p-20">
+    <div class="grid grid-cols-2 gap-4 place-content-around w-2/3 m-auto">
+      <div class="bg-white w-50 project-card" v-for="project in projects" :key="project.slug">
+          <img class="w-100" :src="project.pictures[0]" alt="">
+          <div class="project-overlay px-10 flex flex-row flex-wrap
+            gap-4 content-center w-full">
+            <div v-for="item in project.techList" :key="item"
+              class="rounded-full flex-auto text-center py-1.5 px-3 main-color">
+                {{ item }}
+            </div>
+            <div class="m-auto pt-3">
+              <router-link
+                :to="{ name: 'project-detail', params: { slug: project.slug }}"
+                class="flex-auto main-color rounded-full py-1.5 font-bold text-xl px-3 w-1/3">
+                  See Details
+              </router-link>
+            </div>
+          </div>
+      </div>
     </div>
   </div>
 </template>
@@ -20,7 +34,7 @@ export default {
           subTitle: 'Customer and inventory management system',
           liveLink: null,
           sourceLink: null,
-          pictures: [],
+          pictures: ['https://tim-jones.dev/media/findinghope.png'],
           desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil nostrum dolores, nemo accusantium laboriosam tenetur ipsa nam esse, hic minus nobis? Ab a eaque aspernatur obcaecati dicta, itaque quaerat distinctio.',
           techList: [
             'Python',
@@ -37,7 +51,24 @@ export default {
           subTitle: 'Customer and inventory management system',
           liveLink: null,
           sourceLink: null,
-          pictures: [],
+          pictures: ['https://tim-jones.dev/media/voltask.png'],
+          desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil nostrum dolores, nemo accusantium laboriosam tenetur ipsa nam esse, hic minus nobis? Ab a eaque aspernatur obcaecati dicta, itaque quaerat distinctio.',
+          techList: [
+            'Python',
+            'Django',
+            'Javascript',
+            'Jquery',
+            'HTMX',
+            'PostgreSQL',
+          ],
+        },
+        {
+          slug: 'portfolio',
+          title: 'Portfolio',
+          subTitle: 'Customer and inventory management system',
+          liveLink: null,
+          sourceLink: null,
+          pictures: ['https://tim-jones.dev/media/notesapi.png'],
           desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil nostrum dolores, nemo accusantium laboriosam tenetur ipsa nam esse, hic minus nobis? Ab a eaque aspernatur obcaecati dicta, itaque quaerat distinctio.',
           techList: [
             'Python',
@@ -53,3 +84,35 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.project-card {
+  position: relative;
+}
+
+img {
+  opacity: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  transition: .5s ease;
+  backface-visibility: hidden;
+}
+
+.project-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+  transition: .5s ease;
+  background-color: rgba(36, 3, 241, 0.75);
+}
+
+.project-card:hover .project-overlay {
+  opacity: 1;
+}
+</style>
