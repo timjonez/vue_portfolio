@@ -1,6 +1,6 @@
 <template>
   <div>
-      <h1 class="text-white text-8xl text-center pt-16">
+      <h1 class="text-white text-8xl text-center pt-14">
           <router-link :to="{ name: 'home' }">Tim Jones</router-link>
       </h1>
       <ul class="m-auto justify-around mt-6 text-3xl">
@@ -19,6 +19,7 @@ ul {
 }
 li {
     padding: 10px 20px;
+    border-bottom: transparent 2px solid;
 }
 li:hover {
     border-bottom: #DBFF00 2px solid;
