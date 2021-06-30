@@ -9,6 +9,7 @@
               class="rounded-full flex-auto text-center py-1.5 px-3 main-color">
                 {{ item }}
             </div>
+            <hr>
             <div class="m-auto pt-3">
               <router-link
                 :to="{ name: 'project-detail', params: { slug: project.slug }}"
@@ -114,5 +115,10 @@ img {
 
 .project-card:hover .project-overlay {
   opacity: 1;
+}
+
+hr {
+  width: 100%;
+  border: none;
 }
 </style>
