@@ -1,5 +1,5 @@
 <template>
-  <div id="content" class="flex-grow">
+  <div id="content" class="flex-grow pb-10">
     <div class="flex">
       <div class="flex-grow">
         <h1 class="text-white title">{{ title }}</h1>
@@ -31,6 +31,18 @@
         <Pagination />
       </template>
     </Carousel>
+    <div class="flex gap-10 my-10">
+      <div class="flex-1">
+        <h2 class="text-white text-3xl pb-3">About</h2>
+        <p class="text-white">{{ desc }}</p>
+      </div>
+      <div class="flex-1">
+        <h2 class="text-white text-3xl pb-3">Technical Sheet</h2>
+        <ul class="text-white">
+          <li v-for="item in techList" :key="item">{{ item }}</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -82,4 +94,10 @@ a {
   height: fit-content;
   margin-top: auto;
 }
+
+ul {
+  padding-left: 40px;
+  list-style: disc;
+}
+
 </style>
