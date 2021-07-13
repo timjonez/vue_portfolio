@@ -1,7 +1,7 @@
 const { mongoose } = require('../service/db');
 
 const projectSchema = {
-    slug: String,
+    slug: { type: String, unique: true, required: true},
     title: String,
     subTitle: String,
     liveLink: String,
