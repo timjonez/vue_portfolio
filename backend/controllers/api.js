@@ -1,5 +1,8 @@
 const slugify = require('slugify');
 const { Project } = require('../models/project');
+const { Admin } = require('../models/admin');
+const { checkPasswordAndLogin } = require('./auth.js');
+
 
 exports.projects = (req, res) => {
   Project.find((err, projects) => {
@@ -30,4 +33,22 @@ exports.addProject = (req, res) => {
       res.sendStatus(500)
     }
   });
+};
+
+exports.login = (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  Admin.findOne({ email: email}, (err, admin) => {
+    if (!err) {
+      const token = checkPasswordAndLogin(email, password, admin.password, (token) => {
+        if (token !== null) {
+          res.json({token: token})
+        } else {
+          res.send('failed to log in')
+        }
+      });
+    } else {
+      res.send('Your email and/or password are not correct')
+    }
+  })
 };
