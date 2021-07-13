@@ -14,9 +14,19 @@ exports.projects = (req, res) => {
   });
 };
 
+exports.getProject = (req, res) => {
+  Project.find({slug: req.params.slug}, (err, project) => {
+    if (!err) {
+      res.json(project)
+    } else {
+      res.sendStatus(404)
+    }
+  })
+};
+
 exports.addProject = (req, res) => {
   const project = new Project({
-    slug: slugify(req.body.title),
+    slug: slugify(req.body.title.toLowerCase()),
     title: req.body.title,
     subTitle: req.body.subTitle,
     liveLink: req.body.liveLink,
@@ -34,6 +44,26 @@ exports.addProject = (req, res) => {
     }
   });
 };
+
+exports.updateProject = (req, res) => {
+  Project.updateOne({ slug: req.params.slug }, { $set: req.body }, (err) => {
+    if (!err) {
+      res.sendStatus(200)
+    } else {
+      res.sendStatus(500)
+    }
+  })
+};
+
+exports.deleteProject = (req, res) => {
+  Project.deleteOne({slug: req.params.slug}, (err) => {
+    if (!err) {
+      res.sendStatus(200)
+    } else {
+      res.sendStatus(500)
+    }
+  })
+}
 
 exports.login = (req, res) => {
   const email = req.body.email;
