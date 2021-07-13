@@ -12,6 +12,11 @@ app.route('/projects')
   .get(api.projects)
   .post(authenticateToken, api.addProject);
 
+app.route('/projects/:slug')
+  .get(api.getProject)
+  .patch(api.updateProject)
+  .delete(authenticateToken, api.deleteProject);
+
 app.post('/login', api.login);
 
 app.listen(3000, (err) => {
