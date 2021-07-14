@@ -24,64 +24,26 @@
 </template>
 
 <script>
+import axios from 'axios';
+
+const apiUrl = 'http://192.168.0.5:3000';
+
 export default {
   name: 'ProjectList',
   data() {
     return {
-      projects: [
-        {
-          slug: 'trinity',
-          title: 'Trinity',
-          subTitle: 'Customer and inventory management system',
-          liveLink: null,
-          sourceLink: null,
-          pictures: ['https://tim-jones.dev/media/findinghope.png'],
-          desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil nostrum dolores, nemo accusantium laboriosam tenetur ipsa nam esse, hic minus nobis? Ab a eaque aspernatur obcaecati dicta, itaque quaerat distinctio.',
-          techList: [
-            'Python',
-            'Django',
-            'Javascript',
-            'Jquery',
-            'HTMX',
-            'PostgreSQL',
-          ],
-        },
-        {
-          slug: 'voltask',
-          title: 'VolTask',
-          subTitle: 'Customer and inventory management system',
-          liveLink: null,
-          sourceLink: null,
-          pictures: ['https://tim-jones.dev/media/voltask.png'],
-          desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil nostrum dolores, nemo accusantium laboriosam tenetur ipsa nam esse, hic minus nobis? Ab a eaque aspernatur obcaecati dicta, itaque quaerat distinctio.',
-          techList: [
-            'Python',
-            'Django',
-            'Javascript',
-            'Jquery',
-            'HTMX',
-            'PostgreSQL',
-          ],
-        },
-        {
-          slug: 'portfolio',
-          title: 'Portfolio',
-          subTitle: 'Customer and inventory management system',
-          liveLink: null,
-          sourceLink: null,
-          pictures: ['https://tim-jones.dev/media/notesapi.png'],
-          desc: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil nostrum dolores, nemo accusantium laboriosam tenetur ipsa nam esse, hic minus nobis? Ab a eaque aspernatur obcaecati dicta, itaque quaerat distinctio.',
-          techList: [
-            'Python',
-            'Django',
-            'Javascript',
-            'Jquery',
-            'HTMX',
-            'PostgreSQL',
-          ],
-        },
-      ],
+      projects: [],
     };
+  },
+  created() {
+    axios.get(`${apiUrl}/projects`)
+      .then((res) => {
+        console.log(res.data);
+        this.projects = res.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   },
 };
 </script>
