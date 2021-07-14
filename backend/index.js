@@ -24,6 +24,7 @@ app.route('/projects/:slug')
   .patch(api.updateProject)
   .delete(authenticateToken, api.deleteProject);
 
+app.post('/contact', api.contactUs);
 app.post('/login', api.login);
 
 app.listen(3000, (err) => {
