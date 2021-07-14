@@ -2,6 +2,7 @@ const slugify = require('slugify');
 const { Project } = require('../models/project');
 const { Admin } = require('../models/admin');
 const { checkPasswordAndLogin } = require('./auth.js');
+const { sendEmail } = require('./email.js');
 
 
 exports.projects = (req, res) => {
@@ -81,4 +82,15 @@ exports.login = (req, res) => {
       res.send('Your email and/or password are not correct')
     }
   })
+};
+
+exports.contactUs = (req, res) => {
+  const message = '\nName: ' +req.body.name +'\nEmail: ' + req.body.email + '\n'+ req.body.message
+  sendEmail(req.body.subject, message, (err) => {
+    if (!err) {
+      res.sendStatus(200)
+    } else {
+      res.sendStatus(500)
+    }
+  });
 };
