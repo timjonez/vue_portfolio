@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const fileUpload = require('express-fileupload');
 const Project = require('./models/project');
 const Client = require('./models/client');
 const { authenticateToken } = require('./controllers/auth');
@@ -7,6 +8,11 @@ const api = require('./controllers/api')
 
 const app = express();
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+
+app.use(fileUpload({
+  createParentPath: true
+}));
 
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
@@ -26,6 +32,8 @@ app.route('/projects/:slug')
 
 app.post('/contact', api.contactUs);
 app.post('/login', api.login);
+
+app.post('/upload',authenticateToken, api.uploadPicture);
 
 app.listen(3000, (err) => {
     if (err) {
