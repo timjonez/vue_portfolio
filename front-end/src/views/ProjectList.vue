@@ -26,7 +26,7 @@
 <script>
 import axios from 'axios';
 
-const apiUrl = 'https://api.tim-jones.dev:3000';
+const apiUrl = 'http://localhost:3000';
 
 export default {
   name: 'ProjectList',
