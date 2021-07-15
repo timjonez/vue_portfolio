@@ -51,7 +51,7 @@ import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Pagination, Slide } from 'vue3-carousel';
 import axios from 'axios';
 
-const apiUrl = 'http://127.0.0.1:3000';
+const apiUrl = 'https://api.tim-jones.dev';
 
 export default {
   name: 'ProjectDetail',
