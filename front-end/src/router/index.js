@@ -10,41 +10,48 @@ const routes = [
     path: '/',
     name: 'home',
     component: Home,
+    meta: { title: 'Home | Tim Jones' },
   },
   {
     path: '/resume',
     name: 'resume',
     component: Resume,
+    meta: { title: 'Resume | Tim Jones' },
   },
   {
     path: '/contact',
     name: 'contact',
     component: Contact,
+    meta: { title: 'Contact | Tim Jones' },
   },
   {
     path: '/projects',
     name: 'project-list',
     component: ProjectList,
+    meta: { title: 'Projects | Tim Jones' },
   },
   {
     path: '/project/:slug',
     name: 'project-detail',
     component: ProjectDetail,
     props: true,
+    meta: { title: 'Project | Tim Jones' },
   },
-  // {
-  //   path: '/about',
-  //   name: 'About',
-  //   // route level code-splitting
-  //   // this generates a separate chunk (about.[hash].js) for this route
-  //   // which is lazy-loaded when the route is visited.
-  //   component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-  // },
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  let title = 'Tim Jones';
+  const pageWithTitle = to.matched.find((r) => r.meta.title);
+  if (pageWithTitle) {
+    title = pageWithTitle.meta.title;
+  }
+  document.title = title;
+  next();
 });
 
 export default router;
