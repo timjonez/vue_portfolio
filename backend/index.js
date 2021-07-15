@@ -10,6 +10,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
+app.use('/images', express.static('../uploads'))
+
 app.use(fileUpload({
   createParentPath: true
 }));
