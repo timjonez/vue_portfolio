@@ -38,11 +38,7 @@ export default {
   created() {
     axios.get(`${apiUrl}/projects`)
       .then((res) => {
-        console.log(res.data);
         this.projects = res.data;
-      })
-      .catch((error) => {
-        console.log(error);
       });
   },
 };
