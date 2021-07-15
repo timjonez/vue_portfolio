@@ -78,9 +78,6 @@ export default {
     axios.get(`${apiUrl}/projects/${this.$route.params.slug}`)
       .then((res) => {
         [this.project] = res.data;
-      })
-      .catch((error) => {
-        console.log(error);
       });
   },
 };
