@@ -20,7 +20,7 @@
 <script>
 import axios from 'axios';
 
-const apiUrl = 'https://api.tim-jones.dev:3000';
+const apiUrl = 'http://127.0.0.1:3000';
 
 export default {
   name: 'Contact',
