@@ -66,6 +66,27 @@ exports.deleteProject = (req, res) => {
   })
 }
 
+exports.uploadPicture = (req, res) => {
+  let files;
+  if (!req.files) {
+    res.sendStatus(400, 'No file was uploaded')
+  } else {
+    if (req.files.pictures.length === undefined) {
+      files = [req.files.pictures]
+    } else {
+      files = req.files.pictures
+    }
+    files.forEach((file) => {
+      if (!file.mimetype.includes('image')) {
+        res.sendStatus(400, 'Only pictures are allowed')
+      } else {
+        file.mv('../uploads/'+file.name);
+      }
+    })
+    res.sendStatus(200)
+  }
+};
+
 exports.login = (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
