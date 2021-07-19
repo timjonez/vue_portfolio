@@ -6,7 +6,7 @@ const { sendEmail } = require('./email.js');
 
 
 exports.projects = (req, res) => {
-  Project.find((err, projects) => {
+  Project.find().sort({_id: "desc"}).exec((err, projects) => {
     if (!err) {
       res.send(projects)
     } else {
