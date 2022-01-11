@@ -6,9 +6,8 @@
         I am a self-taught software engineer, and a lifelong learner. As a natural problem-solver,
         I’ve always found it natural to seek solutions for problems I’ve encountered.
         In 2019 I started applying these problem solving skills in the software
-        engineering space, and never looked back.<br> I am currently a software engineer with
-        <a href="https://www.infinite.com/" target="_blank">Infinite Computer Solutions(ICS)</a>,
-        but I also do freelance projects on the side.
+        engineering space, and never looked back.<br> I was recently laid off by Infinite
+        Computer Solutions, so I'm currently looking for my next position.
       </p>
     </div>
   </div>
