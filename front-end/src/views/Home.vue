@@ -5,9 +5,13 @@
       <p class="leading-loose text-lg">Hi, and welcome to my portfolio.
         I am a self-taught software engineer, and a lifelong learner. As a natural problem-solver,
         I’ve always found it natural to seek solutions for problems I’ve encountered.
-        In 2019 I started applying these problem solving skills in the software
-        engineering space, and never looked back.<br> I was recently laid off by Infinite
-        Computer Solutions, so I'm currently looking for my next position.
+        In 2019 I started applying these problem solving skills in the software engineering space,
+        and never looked back.<br>
+        I am currently a full stack software engineer at
+        <a href="https://bluewater-fintech.com/" target="_blank">
+          Blue Water Financial Technologies
+        </a>
+        where I enjoy creating solutions for the mortgage servicing industry.
       </p>
     </div>
   </div>
