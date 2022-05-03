@@ -5,7 +5,7 @@
       </h1>
       <ul class="m-auto justify-around mt-6 text-3xl">
           <li><router-link to="/projects">Projects</router-link></li>
-          <li><router-link to="/resume">Resume</router-link></li>
+          <li><router-link to="/resume">Résumé</router-link></li>
           <li><router-link to="/contact">Contact</router-link></li>
       </ul>
   </div>
