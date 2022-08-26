@@ -2,7 +2,7 @@
 -- Create projects table
 CREATE TABLE projects(
     id uuid NOT NULL,
-    slug VARCHAR(127) NOT NULL,
+    slug VARCHAR(127) NOT NULL UNIQUE,
     title VARCHAR(127) NOT NULL,
     sub_title VARCHAR(255) NULL,
     live_link VARCHAR(255) NULL,
