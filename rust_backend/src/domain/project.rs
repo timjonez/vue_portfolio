@@ -1,5 +1,5 @@
-use uuid::Uuid;
 use serde::{Deserialize, Serialize};
+use uuid::Uuid;
 
 #[derive(Deserialize, Serialize, Debug)]
 pub struct Project {
@@ -23,7 +23,7 @@ impl Project {
             live_link: Some("".to_string()),
             source_link: Some("".to_string()),
             description: "This is the best project for testing.".to_string(),
-            active: true
+            active: true,
         };
         Ok(project)
     }
@@ -38,7 +38,7 @@ impl TryFrom<ProjectForm> for Project {
     fn try_from(value: ProjectForm) -> Result<Self, Self::Error> {
         let slug = match value.slug {
             Some(slug) => slug,
-            None => Self::generate_slug(value.title.clone())
+            None => Self::generate_slug(value.title.clone()),
         };
 
         Ok(Self {
@@ -53,7 +53,6 @@ impl TryFrom<ProjectForm> for Project {
         })
     }
 }
-
 
 #[derive(Deserialize, Debug)]
 pub struct ProjectForm {
