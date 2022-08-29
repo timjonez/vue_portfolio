@@ -18,13 +18,14 @@ pub async fn run() -> std::io::Result<()> {
             .service(routes::save_project)
             .app_data(
                 web::JsonConfig::default().error_handler(|err, req| {
-                        match err {
-                            Deserialize(d) => {
-                                let e = JsonError::new(d.to_string());
-                                error::ErrorBadRequest(serde_json::to_string(&e).unwrap())
-                            },
-                            _ => Error::from(err)
-                        }
+                        error::InternalError::from_response(
+                            "",
+                            HttpResponse::BadRequest()
+                                .content_type("application/json")
+                                .json(JsonError::new(err.to_string()))
+
+                        )
+                        .into()
                     })
             )
     })
