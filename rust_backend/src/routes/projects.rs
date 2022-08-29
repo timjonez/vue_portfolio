@@ -1,7 +1,7 @@
-use actix_web::{get, post, web, HttpResponse};
 use crate::app::get_db_connection;
 use crate::domain::{Project, ProjectForm};
 use crate::utils::JsonError;
+use actix_web::{get, post, web, HttpResponse};
 
 #[get("/projects")]
 pub async fn get_project_list() -> HttpResponse {
@@ -19,7 +19,10 @@ pub async fn save_project(project_data: web::Json<ProjectForm>) -> HttpResponse 
     let project_form: ProjectForm = project_data.0.into();
     let project = match Project::try_from(project_form) {
         Ok(p) => p,
-        Err(_) => return HttpResponse::BadRequest().json(JsonError::new("Failed to create project".to_string()))
+        Err(_) => {
+            return HttpResponse::BadRequest()
+                .json(JsonError::new("Failed to create project".to_string()))
+        }
     };
 
     let query = sqlx::query!(
@@ -43,7 +46,9 @@ pub async fn save_project(project_data: web::Json<ProjectForm>) -> HttpResponse 
         Ok(_) => HttpResponse::Created().json(project),
         Err(e) => {
             if e.to_string().contains("UNIQUE") {
-                return HttpResponse::BadRequest().json(JsonError::new("Project with this slug already exists".to_string()))
+                return HttpResponse::BadRequest().json(JsonError::new(
+                    "Project with this slug already exists".to_string(),
+                ));
             }
             HttpResponse::BadRequest().json(JsonError::new(e.to_string()))
         }
