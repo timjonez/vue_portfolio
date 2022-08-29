@@ -1,14 +1,12 @@
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 #[derive(Serialize, Deserialize, Debug)]
 pub struct JsonError {
-    error: String
+    error: String,
 }
 
 impl JsonError {
-    pub fn new(err: String) -> JsonError{
-        Self {
-            error: err
-        }
+    pub fn new(err: String) -> JsonError {
+        Self { error: err }
     }
 }
