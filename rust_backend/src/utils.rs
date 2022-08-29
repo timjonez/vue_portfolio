@@ -9,4 +9,8 @@ impl JsonError {
     pub fn new(err: String) -> JsonError {
         Self { error: err }
     }
+
+    pub fn from_str(err: &str) -> JsonError {
+        Self { error: String::from(err) }
+    }
 }
