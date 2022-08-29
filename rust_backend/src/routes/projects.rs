@@ -13,6 +13,22 @@ pub async fn get_project_list() -> HttpResponse {
     HttpResponse::Ok().json(projects)
 }
 
+#[get("/project/{slug}")]
+pub async fn get_project(slug: web::Path<String>) -> HttpResponse {
+    let db_pool = get_db_connection().await;
+
+    let query =  sqlx::query_as::<_, Project>(r#"SELECT * FROM projects WHERE slug = $1"#)
+        .bind(&slug[..])
+        .fetch_optional(&db_pool)
+        .await
+        .expect("Failed to find project");
+
+    match query {
+        Some(project) => HttpResponse::Ok().json(project),
+        None => HttpResponse::NotFound().json(JsonError::from_str("Project not found"))
+    }
+}
+
 #[post("/project/")]
 pub async fn save_project(project_data: web::Json<ProjectForm>) -> HttpResponse {
     let db_pool = get_db_connection().await;
