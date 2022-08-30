@@ -15,7 +15,7 @@ pub async fn run() -> std::io::Result<()> {
             .service(routes::get_project_list)
             .service(routes::get_project)
             .service(routes::save_project)
-            .app_data(web::JsonConfig::default().error_handler(|err, req| {
+            .app_data(web::JsonConfig::default().error_handler(|err, _| {
                 error::InternalError::from_response(
                     "",
                     HttpResponse::BadRequest()
